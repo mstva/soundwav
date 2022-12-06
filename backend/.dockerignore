@@ -3,6 +3,8 @@
 
 .env
 .env.sample
+.static
+.media
 .docker-compose
 .dockerignore
 Dockerfile
