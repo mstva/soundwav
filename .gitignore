@@ -5,3 +5,5 @@ __pycache__/
 .volumes
 .static
 .media
+migrations
+!migrations/__init__.py
