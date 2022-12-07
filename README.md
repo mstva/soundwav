@@ -27,3 +27,9 @@ A full production backend API built with these tech stacks:
   ```shell
   docker compose -f backend/.docker-compose/base.yml up -d --build
   ```
+- Run Pytest:
+  ```shell
+  docker exec -it soundwav_base_django /bin/bash -c "/opt/venv/bin/pytest"
+  ```
+
+---
