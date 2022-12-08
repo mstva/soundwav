@@ -30,6 +30,12 @@ module "gcp" {
   database_username      = "${local.project_name}_user"
   database_password      = var.database_password
 
+  instance_name         = "${local.project_name}-instance"
+  instance_machine_type = "e2-micro"
+  instance_disk_image   = "ubuntu-os-cloud/ubuntu-2004-lts"
+  instance_disk_size    = "10"
+  instance_disk_type    = "pd-ssd"
+
 }
 
 output "gcp" {
