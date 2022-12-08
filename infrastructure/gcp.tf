@@ -17,6 +17,10 @@ provider "google" {
 
 module "gcp" {
   source = "./modules/gcp"
+
+  storage_name     = "${local.project_name}-storage"
+  storage_location = "US-EAST1"
+
 }
 
 output "gcp" {
