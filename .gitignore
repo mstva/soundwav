@@ -16,3 +16,4 @@ migrations
 *.tfstate
 *.backup
 .gcp_creds.json
+.secrets.auto.tfvars
