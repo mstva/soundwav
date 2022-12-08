@@ -32,6 +32,17 @@ A full production backend API built with these tech stacks:
   docker exec -it soundwav_base_django /bin/bash -c "/opt/venv/bin/pytest"
   ```
 
+**Run the production environment locally:**
+- Get the environment variables from the infrastructure:
+  ```shell
+  python scripts/get_infra_output.py --compose=infrastructure/.docker-compose.yml --module=gcp
+  ```
+- Update the `backend/.env/.env.production` file.
+- Run Docker Compose:
+  ```shell
+  docker compose -f backend/.docker-compose/production.yml up -d --build
+  ```
+
 ---
 
 ### Infrastructure:
