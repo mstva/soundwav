@@ -33,3 +33,32 @@ A full production backend API built with these tech stacks:
   ```
 
 ---
+
+### Infrastructure:
+
+**Setup Terraform Backend:**
+- Create a new project on Google Cloud Platform.
+- Create a service account and download the service key JSON file and rename it to `.gcp_creds.json`.
+- Create a storage on Google Cloud Storage.
+- Create a file and name it to `.backend.hcl` under `infrastructure` folder.
+- Copy the content of file `.backend.hcl.sample` inside it and fill the values.
+
+**Run Terraform Commands:**
+
+- terraform init
+  ```shell
+  docker compose -f infrastructure/.docker-compose.yml run --rm terraform init -backend-config=.backend.hcl
+  ```
+- terraform plan
+  ```shell
+  docker compose -f infrastructure/.docker-compose.yml run --rm terraform plan
+  ```
+- terraform apply
+  ```shell
+  docker compose -f infrastructure/.docker-compose.yml run --rm terraform apply --auto-approve
+  ```
+- terraform destroy
+  ```shell
+  docker compose -f infrastructure/.docker-compose.yml run --rm terraform destroy --auto-approve
+  ```
+---

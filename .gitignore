@@ -7,3 +7,12 @@ __pycache__/
 .media
 migrations
 !migrations/__init__.py
+.pytest_cache
+
+# infrastructure
+.terraform
+*.lock.hcl
+*.*.hcl
+*.tfstate
+*.backup
+.gcp_creds.json
