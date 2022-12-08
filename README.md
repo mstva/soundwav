@@ -13,6 +13,7 @@ A full production backend API built with these tech stacks:
   - _Google Cloud Container Registry._
 - Infrastructure as Code: _Terraform_.
 - CI/CD: _Jenkins_.
+- Version Control: _Git and GitHub_.
 
 ---
 
