@@ -14,3 +14,12 @@ provider "google" {
   zone        = var.gcp.zone
   credentials = var.gcp.credentials
 }
+
+module "gcp" {
+  source = "./modules/gcp"
+}
+
+output "gcp" {
+  value     = module.gcp
+  sensitive = true
+}

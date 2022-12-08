@@ -53,16 +53,35 @@ A full production backend API built with these tech stacks:
   ```shell
   docker compose -f infrastructure/.docker-compose.yml run --rm terraform init -backend-config=.backend.hcl
   ```
-- terraform plan
+
+- 
+- terraform plan all
   ```shell
   docker compose -f infrastructure/.docker-compose.yml run --rm terraform plan
   ```
-- terraform apply
+- terraform plan gcp
+  ```shell
+  docker compose -f infrastructure/.docker-compose.yml run --rm terraform plan -target="module.gcp"
+  ```
+
+- 
+- terraform apply all
   ```shell
   docker compose -f infrastructure/.docker-compose.yml run --rm terraform apply --auto-approve
   ```
-- terraform destroy
+- terraform apply gcp
+  ```shell
+  docker compose -f infrastructure/.docker-compose.yml run --rm terraform apply -target="module.gcp" --auto-approve
+  ```
+
+- 
+- terraform destroy all
   ```shell
   docker compose -f infrastructure/.docker-compose.yml run --rm terraform destroy --auto-approve
   ```
+- terraform destroy gcp
+  ```shell
+  docker compose -f infrastructure/.docker-compose.yml run --rm terraform destroy -target="module.gcp" --auto-approve
+  ```
+
 ---
