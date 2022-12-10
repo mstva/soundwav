@@ -30,13 +30,15 @@ module "gcp" {
   database_username      = "${local.project_name}_user"
   database_password      = var.database_password
 
-  instance_name         = "${local.project_name}-instance"
-  instance_machine_type = "e2-micro"
-  instance_disk_image   = "ubuntu-os-cloud/ubuntu-2004-lts"
-  instance_disk_size    = "10"
-  instance_disk_type    = "pd-ssd"
-  instance_user         = "${local.project_name}_user"
-  instance_ssh_key      = file("${path.module}/.ssh/id_rsa.pub")
+  instance_name            = "${local.project_name}-instance"
+  instance_machine_type    = "e2-micro"
+  instance_disk_image      = "ubuntu-os-cloud/ubuntu-2004-lts"
+  instance_disk_size       = "10"
+  instance_disk_type       = "pd-ssd"
+  instance_user            = "${local.project_name}_user"
+  instance_ssh_key         = file("${path.module}/.ssh/id_rsa.pub")
+  instance_ssh_private_key = file("${path.module}/.ssh/id_rsa")
+  instance_scripts         = ["./scripts/install_docker.sh"]
 
   network_name            = "${local.project_name}-network"
   network_address_name    = "${local.project_name}-network-address"

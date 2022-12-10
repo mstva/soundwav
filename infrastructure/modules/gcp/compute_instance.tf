@@ -7,6 +7,8 @@ variable "instance_disk_size" { type = string }
 variable "instance_disk_type" { type = string }
 variable "instance_user" { type = string }
 variable "instance_ssh_key" { type = any }
+variable "instance_ssh_private_key" { type = any }
+variable "instance_scripts" { type = list(string) }
 
 resource "google_compute_instance" "main" {
   name         = var.instance_name
@@ -33,6 +35,16 @@ resource "google_compute_instance" "main" {
 
   metadata = {
     ssh-keys = "${var.instance_user}:${var.instance_ssh_key}"
+  }
+
+  provisioner "remote-exec" {
+    connection {
+      type        = "ssh"
+      user        = var.instance_user
+      host        = self.network_interface.0.access_config.0.nat_ip
+      private_key = var.instance_ssh_private_key
+    }
+    scripts = var.instance_scripts
   }
 
 }
