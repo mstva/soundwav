@@ -107,3 +107,57 @@ A full production backend API built with these tech stacks:
   docker compose -f infrastructure/.docker-compose.yml run --rm terraform output gcp
   ```
 ---
+
+### Deployment
+
+#### Deploy Manually
+- Create the GCP resources by following the infrastructure section.
+- Export values and change them according to your infrastructure:
+  ```shell
+  
+  export KEY_FILE=.gcp_creds.json;
+  export KEY_TYPE=_json_key;
+  export HOSTNAME=gcr.io;
+  
+  export PROJECT_ID=soundwav;
+  export IMG_NAME=soundwav;
+  export IMG_TAG=latest;
+  
+  export FINAL_IMAGE=$HOSTNAME/$PROJECT_ID/$IMG_NAME:$IMG_TAG;
+  
+  export ENVIRONMENT=production;
+    
+  export INSTANCE_USER=<YOUR_INSTANCE_USER>;
+  export INSTANCE_IP=<YOUR_INSTANCE_IP>;
+  ```
+
+
+- Login to GCP Container Registry:
+  ```shell
+  cat $KEY_FILE | docker login -u $KEY_TYPE --password-stdin https://$HOSTNAME
+  ```
+- Build a Docker image:
+  ```shell
+  docker build -t $FINAL_IMAGE -f backend/Dockerfile backend --build-arg ENVIRONMENT=$ENVIRONMENT
+  ```
+- Push the Docker image to GCP Container Registry:
+  ```shell
+  docker push $FINAL_IMAGE
+  ```
+
+
+- Copy the env file and the run script to the server:
+  ```shell
+  rsync backend/.gcp_creds.json backend/.env/.env.$ENVIRONMENT scripts/run_backend.py $INSTANCE_USER@$INSTANCE_IP:/home/$INSTANCE_USER
+  ```
+
+- Login to GCP Container Registry on the server:
+  ```shell
+  ssh $INSTANCE_USER@$INSTANCE_IP "cat $KEY_FILE | docker login -u $KEY_TYPE --password-stdin https://$HOSTNAME"
+  ```
+- Run the script on the server:
+  ```shell
+  ssh $INSTANCE_USER@$INSTANCE_IP "python3 run_backend.py --env=.env.$ENVIRONMENT --image=$FINAL_IMAGE"
+  ```
+
+---
