@@ -17,3 +17,4 @@ migrations
 *.backup
 .gcp_creds.json
 .secrets.auto.tfvars
+.ssh

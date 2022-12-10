@@ -59,6 +59,11 @@ A full production backend API built with these tech stacks:
 - Create a file with the name `.secrets.auto.tfvars` under `infrastructure` folder.
 - Copy the contents of file `.secrets.auto.tfvars.sample` inside it and fill the values.
 
+**Setup SSH:**
+- Generate an SSH Key.
+- Create a folder with the name `.ssh` under `infrastructure` folder.
+- Copy `id_rsa.pub` and `id_rsa` file to `infrastructure/.ssh`.
+
 **Run Terraform Commands:**
 
 - terraform init
@@ -96,4 +101,9 @@ A full production backend API built with these tech stacks:
   docker compose -f infrastructure/.docker-compose.yml run --rm terraform destroy -target="module.gcp" --auto-approve
   ```
 
+-
+- terraform output gcp
+  ```shell
+  docker compose -f infrastructure/.docker-compose.yml run --rm terraform output gcp
+  ```
 ---

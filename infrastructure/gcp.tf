@@ -35,7 +35,12 @@ module "gcp" {
   instance_disk_image   = "ubuntu-os-cloud/ubuntu-2004-lts"
   instance_disk_size    = "10"
   instance_disk_type    = "pd-ssd"
+  instance_user         = "${local.project_name}_user"
+  instance_ssh_key      = file("${path.module}/.ssh/id_rsa.pub")
 
+  network_name            = "${local.project_name}-network"
+  network_address_name    = "${local.project_name}-network-address"
+  network_subnetwork_name = "${local.project_name}-network-subnetwork"
 }
 
 output "gcp" {
