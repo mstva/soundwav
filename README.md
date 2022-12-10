@@ -17,7 +17,13 @@ A full production backend API built with these tech stacks:
 
 ---
 
-### Backend:
+### Table of Contents
+- [Run The Backend](#backend)
+- [Setup The Infrastructure](#infrastructure)
+- [Deployment](#deployment)
+  - [Deploy Manually](#deploy-manually)
+
+### Backend
 
 **Set the environment variables:**
 - Copy `backend/.env.sample/` folder and rename it to `backend/.env/`.
@@ -46,7 +52,7 @@ A full production backend API built with these tech stacks:
 
 ---
 
-### Infrastructure:
+### Infrastructure
 
 **Setup Terraform Backend:**
 - Create a new project on Google Cloud Platform.
